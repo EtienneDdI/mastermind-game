@@ -1,187 +1,187 @@
-# Project Structure Documentation
+# Documentation de la Structure du Projet
 
-This document explains the organization and purpose of each file in the Master Mind project.
+Ce document explique l'organisation et le but de chaque fichier dans le projet Master Mind.
 
-## Directory Structure
+## Structure des Répertoires
 
 ```
 mastermind-game/
-├── src/                    # Source code directory
-│   ├── js/                 # JavaScript files
-│   │   ├── main.js         # Application entry point
-│   │   ├── game.js         # Game logic and state
-│   │   ├── ui.js           # User interface management
-│   │   └── utils.js        # Utility functions
-│   └── css/                # Stylesheets
-│       └── styles.css      # Main stylesheet
-├── assets/                 # Static assets
-│   └── images/             # Image files
+├── src/                    # Répertoire du code source
+│   ├── js/                 # Fichiers JavaScript
+│   │   ├── main.js         # Point d'entrée de l'application
+│   │   ├── game.js         # Logique et état du jeu
+│   │   ├── ui.js           # Gestion de l'interface utilisateur
+│   │   └── utils.js        # Fonctions utilitaires
+│   └── css/                # Feuilles de style
+│       └── styles.css      # Feuille de style principale
+├── assets/                 # Ressources statiques
+│   └── images/             # Fichiers image
 ├── docs/                   # Documentation
-│   └── PROJECT_STRUCTURE.md # This file
-├── index.html              # Main HTML file
-├── .gitignore              # Git ignore rules
-├── README.md               # Project documentation
-└── CONTRIBUTING.md         # Contribution guidelines
+│   └── PROJECT_STRUCTURE.md # Ce fichier
+├── index.html              # Fichier HTML principal
+├── .gitignore              # Règles d'exclusion Git
+├── README.md               # Documentation du projet
+└── CONTRIBUTING.md         # Directives de contribution
 ```
 
-## File Descriptions
+## Descriptions des Fichiers
 
-### Root Files
+### Fichiers Racine
 
 #### index.html
-The main HTML file that serves as the entry point for the application. It contains:
-- The basic HTML structure
-- Links to CSS and JavaScript files
-- The game board layout
-- Color palette and controls
+Le fichier HTML principal qui sert de point d'entrée pour l'application. Il contient :
+- La structure HTML de base
+- Les liens vers les fichiers CSS et JavaScript
+- La disposition du plateau de jeu
+- La palette de couleurs et les contrôles
 
 #### README.md
-Comprehensive project documentation including:
-- Project description
-- Installation instructions
-- Git workflow guide
-- Team information
+Documentation complète du projet incluant :
+- Description du projet
+- Instructions d'installation
+- Guide du workflow Git
+- Informations de l'équipe
 
 #### CONTRIBUTING.md
-Guidelines for contributing to the project, including:
-- Code style guidelines
-- Git workflow
-- Pull request process
-- Code review guidelines
+Directives pour contribuer au projet, incluant :
+- Directives de style de code
+- Workflow Git
+- Processus de Pull Request
+- Directives de révision de code
 
 #### .gitignore
-Specifies which files and directories Git should ignore, including:
-- Operating system files
-- IDE configuration files
-- Node modules (if added later)
-- Build outputs
+Spécifie quels fichiers et répertoires Git doit ignorer, incluant :
+- Fichiers du système d'exploitation
+- Fichiers de configuration IDE
+- Modules Node (si ajoutés plus tard)
+- Sorties de build
 
-### Source Files (src/)
+### Fichiers Source (src/)
 
 #### src/js/main.js
-**Purpose:** Application initialization and coordination
+**But :** Initialisation et coordination de l'application
 
-**Responsibilities:**
-- Initialize the game when DOM is loaded
-- Set up event listeners
-- Coordinate between game logic and UI
+**Responsabilités :**
+- Initialiser le jeu quand le DOM est chargé
+- Configurer les écouteurs d'événements
+- Coordonner entre la logique du jeu et l'interface
 
-**Key Functions:**
-- `initializeGame()`: Initialize game state
-- `setupEventListeners()`: Set up all event handlers
+**Fonctions Clés :**
+- `initializeGame()` : Initialiser l'état du jeu
+- `setupEventListeners()` : Configurer tous les gestionnaires d'événements
 
 #### src/js/game.js
-**Purpose:** Game logic and state management
+**But :** Logique et gestion de l'état du jeu
 
-**Responsibilities:**
-- Generate secret codes
-- Validate guesses
-- Track game state
-- Determine win/loss conditions
+**Responsabilités :**
+- Générer des codes secrets
+- Valider les tentatives
+- Suivre l'état du jeu
+- Déterminer les conditions de victoire/défaite
 
-**Key Components:**
-- `generateSecretCode()`: Create random secret code
-- `checkGuess()`: Compare guess with secret code
-- `gameState` object: Manage game state
+**Composants Clés :**
+- `generateSecretCode()` : Créer un code secret aléatoire
+- `checkGuess()` : Comparer la tentative avec le code secret
+- Objet `gameState` : Gérer l'état du jeu
 
-**Game State Properties:**
-- `secretCode`: The code to guess
-- `attempts`: History of all guesses
-- `maxAttempts`: Maximum allowed attempts
-- `currentAttempt`: Current attempt number
-- `gameStatus`: Current game status (playing/won/lost)
+**Propriétés de l'État du Jeu :**
+- `secretCode` : Le code à deviner
+- `attempts` : Historique de toutes les tentatives
+- `maxAttempts` : Nombre maximum de tentatives autorisées
+- `currentAttempt` : Numéro de la tentative actuelle
+- `gameStatus` : Statut actuel du jeu (en cours/gagné/perdu)
 
 #### src/js/ui.js
-**Purpose:** User interface management
+**But :** Gestion de l'interface utilisateur
 
-**Responsibilities:**
-- Render game elements
-- Handle user interactions
-- Display feedback
-- Update visual state
+**Responsabilités :**
+- Rendre les éléments du jeu
+- Gérer les interactions utilisateur
+- Afficher les retours
+- Mettre à jour l'état visuel
 
-**Key Functions:**
-- `renderColorPalette()`: Display color selection buttons
-- `renderGuessSlots()`: Create peg slots for guesses
-- `selectColor()`: Handle color selection
-- `displayGuessInHistory()`: Show previous attempts
-- `updateAttemptsCounter()`: Update remaining attempts
-- `displayGameResult()`: Show win/loss message
-- `resetUI()`: Reset interface for new game
+**Fonctions Clés :**
+- `renderColorPalette()` : Afficher les boutons de sélection de couleur
+- `renderGuessSlots()` : Créer les emplacements de pions pour les tentatives
+- `selectColor()` : Gérer la sélection de couleur
+- `displayGuessInHistory()` : Montrer les tentatives précédentes
+- `updateAttemptsCounter()` : Mettre à jour les tentatives restantes
+- `displayGameResult()` : Afficher le message de victoire/défaite
+- `resetUI()` : Réinitialiser l'interface pour une nouvelle partie
 
 #### src/js/utils.js
-**Purpose:** Reusable utility functions
+**But :** Fonctions utilitaires réutilisables
 
-**Responsibilities:**
-- Input validation
-- Array manipulation
-- Local storage management
-- Helper functions
+**Responsabilités :**
+- Validation d'entrée
+- Manipulation de tableaux
+- Gestion du stockage local
+- Fonctions d'aide
 
-**Key Functions:**
-- `validateGuess()`: Validate user input
-- `shuffleArray()`: Randomize array elements
-- `saveToLocalStorage()`: Save data locally
-- `loadFromLocalStorage()`: Load saved data
-- `formatTime()`: Format time display
-- `debounce()`: Limit function call frequency
+**Fonctions Clés :**
+- `validateGuess()` : Valider l'entrée utilisateur
+- `shuffleArray()` : Randomiser les éléments du tableau
+- `saveToLocalStorage()` : Sauvegarder les données localement
+- `loadFromLocalStorage()` : Charger les données sauvegardées
+- `formatTime()` : Formater l'affichage du temps
+- `debounce()` : Limiter la fréquence d'appel de fonction
 
 #### src/css/styles.css
-**Purpose:** Visual styling and layout
+**But :** Style visuel et mise en page
 
-**Responsibilities:**
-- Define color scheme and theme
-- Layout components
-- Responsive design
-- Animations and transitions
+**Responsabilités :**
+- Définir le schéma de couleurs et le thème
+- Disposer les composants
+- Design responsive
+- Animations et transitions
 
-**Key Sections:**
-- CSS variables for theme colors
-- Base styles and reset
-- Component styles (pegs, buttons, etc.)
-- Responsive media queries
-- Accessibility features
+**Sections Clés :**
+- Variables CSS pour les couleurs du thème
+- Styles de base et reset
+- Styles des composants (pions, boutons, etc.)
+- Requêtes média responsive
+- Fonctionnalités d'accessibilité
 
-## Data Flow
+## Flux de Données
 
 ```
-User Interaction
+Interaction Utilisateur
     ↓
-UI Layer (ui.js)
+Couche Interface (ui.js)
     ↓
 Validation (utils.js)
     ↓
-Game Logic (game.js)
+Logique du Jeu (game.js)
     ↓
-State Update
+Mise à Jour de l'État
     ↓
-UI Update (ui.js)
+Mise à Jour Interface (ui.js)
     ↓
-Visual Feedback
+Retour Visuel
 ```
 
-## Module Dependencies
+## Dépendances des Modules
 
-- `main.js` depends on: `game.js`, `ui.js`, `utils.js`
-- `ui.js` depends on: `utils.js`
-- `game.js` depends on: `utils.js`
-- `utils.js` has no dependencies
+- `main.js` dépend de : `game.js`, `ui.js`, `utils.js`
+- `ui.js` dépend de : `utils.js`
+- `game.js` dépend de : `utils.js`
+- `utils.js` n'a pas de dépendances
 
-## Adding New Features
+## Ajouter de Nouvelles Fonctionnalités
 
-When adding new features:
+Lors de l'ajout de nouvelles fonctionnalités :
 
-1. Determine which module should handle the feature
-2. Add necessary functions to the appropriate file
-3. Update this documentation
-4. Add comments to explain complex logic
-5. Test thoroughly
+1. Déterminer quel module devrait gérer la fonctionnalité
+2. Ajouter les fonctions nécessaires au fichier approprié
+3. Mettre à jour cette documentation
+4. Ajouter des commentaires pour expliquer la logique complexe
+5. Tester minutieusement
 
-## Best Practices
+## Bonnes Pratiques
 
-- Keep functions small and focused
-- Separate concerns between modules
-- Use meaningful variable and function names
-- Add JSDoc comments for all functions
-- Follow existing code style
-- Test changes before committing
+- Garder les fonctions petites et focalisées
+- Séparer les préoccupations entre modules
+- Utiliser des noms de variables et fonctions significatifs
+- Ajouter des commentaires JSDoc pour toutes les fonctions
+- Suivre le style de code existant
+- Tester les changements avant de committer

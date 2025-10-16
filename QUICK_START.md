@@ -1,218 +1,218 @@
-# Quick Start Guide
+# Guide de Démarrage Rapide
 
-This guide will help you get started with the Master Mind project quickly.
+Ce guide vous aidera à démarrer rapidement avec le projet Master Mind.
 
-## First Time Setup
+## Configuration Première Fois
 
-### 1. Create GitHub Repository
+### 1. Créer le Dépôt GitHub
 
-1. Go to [GitHub](https://github.com)
-2. Click the "+" icon in the top right and select "New repository"
-3. Name it: `mastermind-game`
-4. Description: "A JavaScript implementation of the classic Master Mind board game"
-5. Keep it Public or Private (your choice)
-6. Do NOT initialize with README, .gitignore, or license (we already have these)
-7. Click "Create repository"
+1. Aller sur [GitHub](https://github.com)
+2. Cliquer sur l'icône "+" en haut à droite et sélectionner "New repository"
+3. Nommer : `mastermind-game`
+4. Description : "Une implémentation JavaScript du jeu de société classique Master Mind"
+5. Le garder Public ou Privé (votre choix)
+6. NE PAS initialiser avec README, .gitignore, ou licence (nous les avons déjà)
+7. Cliquer sur "Create repository"
 
-### 2. Connect Local Repository to GitHub
+### 2. Connecter le Dépôt Local à GitHub
 
-After creating the repository on GitHub, run these commands:
+Après avoir créé le dépôt sur GitHub, exécuter ces commandes :
 
 ```bash
-# Navigate to the project directory
+# Naviguer vers le répertoire du projet
 cd /Users/catherine/mastermind-game
 
-# Add all files to git
+# Ajouter tous les fichiers à git
 git add .
 
-# Create initial commit
-git commit -m "Initial commit: Project structure and base files"
+# Créer le commit initial
+git commit -m "Initial commit: Structure de projet et fichiers de base"
 
-# Add remote repository (replace YOUR_USERNAME with your GitHub username)
-git remote add origin https://github.com/YOUR_USERNAME/mastermind-game.git
+# Ajouter le dépôt distant
+git remote add origin https://github.com/EtienneDdI/mastermind-game.git
 
-# Push to GitHub
+# Pousser vers GitHub
 git push -u origin main
 ```
 
-If you get an error about the branch name, run:
+Si vous obtenez une erreur sur le nom de la branche, exécuter :
 ```bash
 git branch -M main
 git push -u origin main
 ```
 
-### 3. Invite Team Members
+### 3. Inviter les Membres de l'Équipe
 
-1. Go to your repository on GitHub
-2. Click "Settings" tab
-3. Click "Collaborators" in the left sidebar
-4. Click "Add people"
-5. Search for and add your team members (Pham, Gowend, Etienne)
+1. Aller sur votre dépôt sur GitHub
+2. Cliquer sur l'onglet "Settings"
+3. Cliquer sur "Collaborators" dans la barre latérale gauche
+4. Cliquer sur "Add people"
+5. Rechercher et ajouter vos membres d'équipe (Pham, Gowend, Etienne)
 
-### 4. Clone the Repository (For Team Members)
+### 4. Cloner le Dépôt (Pour les Membres de l'Équipe)
 
-Team members should clone the repository:
+Les membres de l'équipe doivent cloner le dépôt :
 
 ```bash
-# Clone the repository (replace YOUR_USERNAME)
-git clone https://github.com/YOUR_USERNAME/mastermind-game.git
+# Cloner le dépôt
+git clone https://github.com/EtienneDdI/mastermind-game.git
 
-# Navigate into the project
+# Naviguer dans le projet
 cd mastermind-game
 
-# Verify everything is there
+# Vérifier que tout est là
 ls
 ```
 
-## Daily Workflow
+## Workflow Quotidien
 
-### Starting Work
+### Commencer à Travailler
 
 ```bash
-# 1. Make sure you're on the main branch
+# 1. Assurez-vous d'être sur la branche main
 git checkout main
 
-# 2. Pull latest changes
+# 2. Récupérer les derniers changements
 git pull origin main
 
-# 3. Create a feature branch
-git checkout -b feature/your-feature-name
+# 3. Créer une branche de fonctionnalité
+git checkout -b feature/nom-de-votre-fonctionnalite
 ```
 
-### While Working
+### Pendant le Travail
 
 ```bash
-# Check what files you've modified
+# Vérifier quels fichiers vous avez modifiés
 git status
 
-# Add files to staging
-git add filename.js
-# Or add all files
+# Ajouter des fichiers à la préparation
+git add nomfichier.js
+# Ou ajouter tous les fichiers
 git add .
 
-# Commit your changes
-git commit -m "Add feature description"
+# Committer vos changements
+git commit -m "Description de la fonctionnalité"
 
-# Push to GitHub
-git push -u origin feature/your-feature-name
+# Pousser vers GitHub
+git push -u origin feature/nom-de-votre-fonctionnalite
 ```
 
-### Finishing Work
+### Terminer le Travail
 
-1. Push your feature branch to GitHub
-2. Go to GitHub and create a Pull Request
-3. Ask a team member to review
-4. After approval, merge the Pull Request
-5. Delete the feature branch on GitHub
-6. Update your local main:
+1. Pousser votre branche de fonctionnalité vers GitHub
+2. Aller sur GitHub et créer une Pull Request
+3. Demander à un membre de l'équipe de réviser
+4. Après approbation, fusionner la Pull Request
+5. Supprimer la branche de fonctionnalité sur GitHub
+6. Mettre à jour votre main local :
 
 ```bash
 git checkout main
 git pull origin main
-git branch -d feature/your-feature-name
+git branch -d feature/nom-de-votre-fonctionnalite
 ```
 
-## Common Commands Reference
+## Référence des Commandes Courantes
 
 ```bash
-# See current branch
+# Voir la branche actuelle
 git branch
 
-# Switch to existing branch
-git checkout branch-name
+# Basculer vers une branche existante
+git checkout nom-branche
 
-# Create and switch to new branch
-git checkout -b new-branch-name
+# Créer et basculer vers une nouvelle branche
+git checkout -b nom-nouvelle-branche
 
-# See what changed
+# Voir ce qui a changé
 git status
 git diff
 
-# View commit history
+# Voir l'historique des commits
 git log --oneline
 
-# Undo changes in a file (before staging)
-git checkout -- filename.js
+# Annuler les changements dans un fichier (avant préparation)
+git checkout -- nomfichier.js
 
-# Remove file from staging (before commit)
-git reset HEAD filename.js
+# Retirer un fichier de la préparation (avant commit)
+git reset HEAD nomfichier.js
 ```
 
-## Testing Your Changes
+## Tester Vos Changements
 
-Before committing:
+Avant de committer :
 
-1. Open `index.html` in your browser
-2. Test all functionality
-3. Check the browser console for errors (F12)
-4. Test on different browsers if possible
-5. Test responsive design (resize browser window)
+1. Ouvrir `index.html` dans votre navigateur
+2. Tester toutes les fonctionnalités
+3. Vérifier la console du navigateur pour les erreurs (F12)
+4. Tester sur différents navigateurs si possible
+5. Tester le design responsive (redimensionner la fenêtre du navigateur)
 
-## Getting Help
+## Obtenir de l'Aide
 
-- Read the [README.md](README.md) for detailed documentation
-- Read the [CONTRIBUTING.md](CONTRIBUTING.md) for code guidelines
-- Check [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md) for file organization
-- Ask team members in your group chat
-- Search GitHub Issues for similar problems
-- Create a new Issue if you find a bug
+- Lire le [README.md](README.md) pour la documentation détaillée
+- Lire le [CONTRIBUTING.md](CONTRIBUTING.md) pour les directives de code
+- Consulter [docs/PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md) pour l'organisation des fichiers
+- Demander aux membres de l'équipe dans le chat de groupe
+- Rechercher dans les Issues GitHub pour des problèmes similaires
+- Créer une nouvelle Issue si vous trouvez un bug
 
-## Troubleshooting
+## Dépannage
 
-### "Permission denied" when pushing
+### "Permission denied" lors du push
 
-You may need to set up SSH keys or use a Personal Access Token. See:
-- [GitHub SSH Key Guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh)
-- [Personal Access Token Guide](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+Vous devrez peut-être configurer des clés SSH ou utiliser un Token d'Accès Personnel. Voir :
+- [Guide de Clé SSH GitHub](https://docs.github.com/fr/authentication/connecting-to-github-with-ssh)
+- [Guide de Token d'Accès Personnel](https://docs.github.com/fr/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
-### Merge conflicts
+### Conflits de fusion
 
-1. Open the conflicted file
-2. Look for `<<<<<<<`, `=======`, and `>>>>>>>` markers
-3. Manually edit to keep the correct code
-4. Remove the conflict markers
-5. Save the file
-6. Add and commit:
+1. Ouvrir le fichier en conflit
+2. Chercher les marqueurs `<<<<<<<`, `=======`, et `>>>>>>>`
+3. Éditer manuellement pour garder le bon code
+4. Retirer les marqueurs de conflit
+5. Sauvegarder le fichier
+6. Ajouter et committer :
 ```bash
-git add conflicted-file.js
-git commit -m "Resolve merge conflict"
+git add fichier-en-conflit.js
+git commit -m "Résoudre le conflit de fusion"
 ```
 
-### "Already up to date" but files are different
+### "Already up to date" mais les fichiers sont différents
 
 ```bash
-# Reset to remote version
+# Réinitialiser à la version distante
 git fetch origin
 git reset --hard origin/main
 ```
 
-### Accidentally committed to main instead of a branch
+### Commit accidentel sur main au lieu d'une branche
 
 ```bash
-# Create a new branch with current changes
-git branch feature/your-feature
+# Créer une nouvelle branche avec les changements actuels
+git branch feature/votre-fonctionnalite
 git reset --hard origin/main
-git checkout feature/your-feature
+git checkout feature/votre-fonctionnalite
 ```
 
-## Best Practices
+## Bonnes Pratiques
 
-1. Always pull before starting work
-2. Commit frequently with clear messages
-3. Push your branch daily
-4. Keep branches short-lived (merge within a few days)
-5. Review your changes before committing
-6. Test before pushing
-7. Communicate with your team
-8. Don't commit sensitive information
-9. Don't commit generated files
-10. Keep commits focused on one change
+1. Toujours tirer avant de commencer à travailler
+2. Committer fréquemment avec des messages clairs
+3. Pousser votre branche quotidiennement
+4. Garder les branches de courte durée (fusionner en quelques jours)
+5. Réviser vos changements avant de committer
+6. Tester avant de pousser
+7. Communiquer avec votre équipe
+8. Ne pas committer d'informations sensibles
+9. Ne pas committer de fichiers générés
+10. Garder les commits focalisés sur un changement
 
-## Next Steps
+## Prochaines Étapes
 
-1. Read through the codebase to understand the structure
-2. Check the Notion board for your assigned tasks
-3. Create a feature branch for your first task
-4. Start coding!
+1. Lire le code pour comprendre la structure
+2. Consulter le tableau Notion pour vos tâches assignées
+3. Créer une branche de fonctionnalité pour votre première tâche
+4. Commencer à coder !
 
-Good luck with the project!
+Bonne chance avec le projet !

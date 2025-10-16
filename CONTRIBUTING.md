@@ -1,158 +1,158 @@
-# Contributing to Master Mind Game
+# Contribuer au Jeu Master Mind
 
-Thank you for contributing to this project! This document provides guidelines for team collaboration.
+Merci de contribuer à ce projet ! Ce document fournit des directives pour la collaboration en équipe.
 
-## Code Style Guidelines
+## Directives de Style de Code
 
 ### JavaScript
 
-- Use camelCase for variable and function names
-- Use descriptive names for variables and functions
-- Add JSDoc comments for all functions
-- Keep functions small and focused on a single task
-- Use const for variables that won't be reassigned, let otherwise
-- Avoid var
+- Utilisez camelCase pour les noms de variables et de fonctions
+- Utilisez des noms descriptifs pour les variables et les fonctions
+- Ajoutez des commentaires JSDoc pour toutes les fonctions
+- Gardez les fonctions petites et focalisées sur une seule tâche
+- Utilisez const pour les variables qui ne seront pas réassignées, let sinon
+- Évitez var
 
-Example:
+Exemple :
 ```javascript
 /**
- * Calculate the sum of two numbers
- * @param {number} a - First number
- * @param {number} b - Second number
- * @returns {number} The sum
+ * Calculer la somme de deux nombres
+ * @param {number} a - Premier nombre
+ * @param {number} b - Deuxième nombre
+ * @returns {number} La somme
  */
-function calculateSum(a, b) {
+function calculerSomme(a, b) {
     return a + b;
 }
 ```
 
 ### HTML
 
-- Use semantic HTML5 elements
-- Add appropriate ARIA labels for accessibility
-- Keep consistent indentation (2 or 4 spaces)
-- Use meaningful id and class names
+- Utilisez des éléments HTML5 sémantiques
+- Ajoutez des labels ARIA appropriés pour l'accessibilité
+- Gardez une indentation cohérente (2 ou 4 espaces)
+- Utilisez des noms d'id et de class significatifs
 
 ### CSS
 
-- Use CSS variables for colors and common values
-- Follow BEM naming convention when appropriate
-- Keep selectors simple and maintainable
-- Group related properties together
-- Add comments for complex sections
+- Utilisez des variables CSS pour les couleurs et valeurs communes
+- Suivez la convention de nommage BEM quand approprié
+- Gardez les sélecteurs simples et maintenables
+- Regroupez les propriétés connexes ensemble
+- Ajoutez des commentaires pour les sections complexes
 
-## Git Workflow
+## Workflow Git
 
-### Branch Naming
+### Nommage des Branches
 
-Use descriptive branch names with prefixes:
-- `feature/` for new features: `feature/add-timer`
-- `fix/` for bug fixes: `fix/validation-bug`
-- `docs/` for documentation: `docs/update-readme`
-- `refactor/` for code refactoring: `refactor/game-logic`
+Utilisez des noms de branches descriptifs avec des préfixes :
+- `feature/` pour les nouvelles fonctionnalités : `feature/ajouter-chrono`
+- `fix/` pour les corrections de bugs : `fix/bug-validation`
+- `docs/` pour la documentation : `docs/mise-a-jour-readme`
+- `refactor/` pour le refactoring de code : `refactor/logique-jeu`
 
-### Commit Messages
+### Messages de Commit
 
-Write clear, concise commit messages:
+Écrivez des messages de commit clairs et concis :
 
-**Format:**
+**Format :**
 ```
-<type>: <subject>
+<type>: <sujet>
 
-<body (optional)>
-```
-
-**Types:**
-- `feat`: New feature
-- `fix`: Bug fix
-- `docs`: Documentation changes
-- `style`: Code style changes (formatting, missing semicolons, etc.)
-- `refactor`: Code refactoring
-- `test`: Adding or updating tests
-- `chore`: Maintenance tasks
-
-**Examples:**
-```
-feat: Add timer functionality to track game duration
-
-Implemented a countdown timer that starts when the game begins
-and stops when the player wins or loses.
+<corps (optionnel)>
 ```
 
+**Types :**
+- `feat`: Nouvelle fonctionnalité
+- `fix`: Correction de bug
+- `docs`: Modifications de documentation
+- `style`: Modifications de style de code (formatage, points-virgules manquants, etc.)
+- `refactor`: Refactoring de code
+- `test`: Ajout ou mise à jour de tests
+- `chore`: Tâches de maintenance
+
+**Exemples :**
 ```
-fix: Correct duplicate color handling in validation
+feat: Ajouter la fonctionnalité chronomètre
 
-The validation algorithm now properly handles cases where the
-secret code contains duplicate colors.
+Implémentation d'un chronomètre à rebours qui démarre quand le jeu
+commence et s'arrête quand le joueur gagne ou perd.
 ```
 
-### Pull Request Process
+```
+fix: Corriger la gestion des couleurs dupliquées dans la validation
 
-1. Create a feature branch from `main`
-2. Make your changes and commit regularly
-3. Push your branch to GitHub
-4. Create a Pull Request with a clear description
-5. Wait for at least one team member to review
-6. Address any feedback
-7. Merge after approval
+L'algorithme de validation gère maintenant correctement les cas où
+le code secret contient des couleurs dupliquées.
+```
 
-### Pull Request Template
+### Processus de Pull Request
+
+1. Créer une branche de fonctionnalité depuis `main`
+2. Faire vos modifications et committer régulièrement
+3. Pousser votre branche vers GitHub
+4. Créer une Pull Request avec une description claire
+5. Attendre qu'au moins un membre de l'équipe révise
+6. Traiter tous les retours
+7. Fusionner après approbation
+
+### Modèle de Pull Request
 
 ```markdown
 ## Description
-Brief description of changes
+Brève description des changements
 
-## Type of Change
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Documentation update
-- [ ] Code refactoring
+## Type de Changement
+- [ ] Correction de bug
+- [ ] Nouvelle fonctionnalité
+- [ ] Mise à jour de documentation
+- [ ] Refactoring de code
 
-## Testing
-Describe how you tested your changes
+## Tests
+Décrivez comment vous avez testé vos changements
 
-## Checklist
-- [ ] Code follows project style guidelines
-- [ ] Added/updated comments and documentation
-- [ ] Tested in multiple browsers
-- [ ] No console errors
-- [ ] Ready for review
+## Liste de Vérification
+- [ ] Le code suit les directives de style du projet
+- [ ] Ajout/mise à jour des commentaires et documentation
+- [ ] Testé dans plusieurs navigateurs
+- [ ] Aucune erreur de console
+- [ ] Prêt pour révision
 ```
 
-## Code Review Guidelines
+## Directives de Révision de Code
 
-When reviewing code:
+Lors de la révision de code :
 
-1. Be constructive and respectful
-2. Focus on the code, not the person
-3. Explain why you're suggesting changes
-4. Approve if changes look good, or request changes if needed
-5. Test the changes locally if possible
+1. Soyez constructif et respectueux
+2. Concentrez-vous sur le code, pas sur la personne
+3. Expliquez pourquoi vous suggérez des modifications
+4. Approuvez si les changements semblent bons, ou demandez des modifications si nécessaire
+5. Testez les changements localement si possible
 
-## Testing
+## Tests
 
-Before submitting a PR:
+Avant de soumettre une PR :
 
-1. Test all functionality manually
-2. Check in Chrome, Firefox, and Safari
-3. Test on mobile devices or use browser dev tools
-4. Verify no console errors
-5. Test edge cases
+1. Tester toutes les fonctionnalités manuellement
+2. Vérifier dans Chrome, Firefox et Safari
+3. Tester sur appareils mobiles ou utiliser les outils de développement du navigateur
+4. Vérifier qu'il n'y a pas d'erreurs de console
+5. Tester les cas limites
 
 ## Communication
 
-- Use GitHub Issues for bug reports and feature requests
-- Use Pull Request comments for code discussions
-- Keep team members informed of major changes
-- Ask for help when stuck
+- Utiliser les Issues GitHub pour les rapports de bugs et demandes de fonctionnalités
+- Utiliser les commentaires de Pull Request pour les discussions de code
+- Tenir les membres de l'équipe informés des changements majeurs
+- Demander de l'aide quand vous êtes bloqué
 
-## File Organization
+## Organisation des Fichiers
 
-- JavaScript files go in `src/js/`
-- CSS files go in `src/css/`
-- Images go in `assets/images/`
-- Documentation goes in `docs/`
+- Les fichiers JavaScript vont dans `src/js/`
+- Les fichiers CSS vont dans `src/css/`
+- Les images vont dans `assets/images/`
+- La documentation va dans `docs/`
 
-## Questions?
+## Questions ?
 
-If you have questions about contributing, ask in the team chat or create an issue on GitHub.
+Si vous avez des questions sur comment contribuer, demandez dans le chat d'équipe ou créez une issue sur GitHub.

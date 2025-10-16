@@ -1,272 +1,272 @@
-# Master Mind Game
+# Jeu Master Mind
 
-A JavaScript implementation of the classic Master Mind board game.
+Une implémentation JavaScript du jeu de société classique Master Mind.
 
 ## Description
 
-Master Mind is a code-breaking game where one player (the computer) creates a secret code, and the other player (the user) tries to guess it within a limited number of attempts. After each guess, the game provides feedback indicating how many colors are correct and in the right position (black pegs) and how many colors are correct but in the wrong position (white pegs).
+Master Mind est un jeu de décodage où un joueur (l'ordinateur) crée un code secret, et l'autre joueur (l'utilisateur) tente de le deviner en un nombre limité de tentatives. Après chaque essai, le jeu fournit un retour indiquant combien de couleurs sont correctes et bien placées (pions noirs) et combien de couleurs sont correctes mais mal placées (pions blancs).
 
-## Project Structure
+## Structure du Projet
 
 ```
 mastermind-game/
 ├── src/
 │   ├── js/
-│   │   ├── main.js           # Entry point and game initialization
-│   │   ├── game.js            # Game logic and state management
-│   │   ├── ui.js              # User interface interactions
-│   │   └── utils.js           # Utility functions
+│   │   ├── main.js           # Point d'entrée et initialisation du jeu
+│   │   ├── game.js            # Logique du jeu et gestion de l'état
+│   │   ├── ui.js              # Interactions de l'interface utilisateur
+│   │   └── utils.js           # Fonctions utilitaires
 │   └── css/
-│       └── styles.css         # Game styling
+│       └── styles.css         # Styles du jeu
 ├── assets/
-│   └── images/                # Game assets (if needed)
-├── docs/                      # Documentation files
-├── index.html                 # Main HTML file
-├── .gitignore                 # Git ignore file
-└── README.md                  # This file
+│   └── images/                # Ressources du jeu (si nécessaire)
+├── docs/                      # Fichiers de documentation
+├── index.html                 # Fichier HTML principal
+├── .gitignore                 # Fichier d'exclusion Git
+└── README.md                  # Ce fichier
 ```
 
-## Features
+## Fonctionnalités
 
-- Classic Master Mind gameplay (4 pegs, 6 colors)
-- Visual feedback with black and white indicators
-- Attempt counter and game history
-- Win/loss detection
-- Responsive design for mobile and desktop
+- Jeu Master Mind classique (4 pions, 6 couleurs)
+- Retour visuel avec indicateurs noirs et blancs
+- Compteur de tentatives et historique du jeu
+- Détection de victoire/défaite
+- Design responsive pour mobile et bureau
 
-## Getting Started
+## Démarrage
 
-### Prerequisites
+### Prérequis
 
-- A modern web browser (Chrome, Firefox, Safari, Edge)
-- Git installed on your machine
-- A text editor or IDE (VS Code recommended)
+- Un navigateur web moderne (Chrome, Firefox, Safari, Edge)
+- Git installé sur votre machine
+- Un éditeur de texte ou IDE (VS Code recommandé)
 
 ### Installation
 
-1. Clone the repository:
+1. Clonez le dépôt :
 ```bash
-git clone https://github.com/YOUR_USERNAME/mastermind-game.git
+git clone https://github.com/EtienneDdI/mastermind-game.git
 cd mastermind-game
 ```
 
-2. Open the project:
+2. Ouvrez le projet :
 ```bash
-# Open in VS Code (if installed)
+# Ouvrir dans VS Code (si installé)
 code .
 
-# Or open index.html directly in your browser
+# Ou ouvrir index.html directement dans votre navigateur
 open index.html  # macOS
 start index.html # Windows
 xdg-open index.html # Linux
 ```
 
-### Running the Game
+### Lancer le Jeu
 
-Simply open `index.html` in your web browser. No build process or dependencies required for the basic version.
+Ouvrez simplement `index.html` dans votre navigateur web. Aucun processus de build ou dépendances requis pour la version de base.
 
-## Git Workflow Guide
+## Guide du Workflow Git
 
-### Initial Setup
+### Configuration Initiale
 
 ```bash
-# Configure your Git identity (first time only)
-git config --global user.name "Your Name"
-git config --global user.email "your.email@example.com"
+# Configurer votre identité Git (première fois seulement)
+git config --global user.name "Votre Nom"
+git config --global user.email "votre.email@exemple.com"
 
-# Clone the repository
-git clone https://github.com/YOUR_USERNAME/mastermind-game.git
+# Cloner le dépôt
+git clone https://github.com/EtienneDdI/mastermind-game.git
 cd mastermind-game
 ```
 
-### Basic Git Commands
+### Commandes Git de Base
 
-#### Check Status
+#### Vérifier le Statut
 ```bash
-# See what files have been modified
+# Voir quels fichiers ont été modifiés
 git status
 ```
 
-#### Stage Changes
+#### Préparer les Changements
 ```bash
-# Stage specific files
+# Préparer des fichiers spécifiques
 git add src/js/game.js
 
-# Stage all modified files
+# Préparer tous les fichiers modifiés
 git add .
 
-# Stage all files in a directory
+# Préparer tous les fichiers d'un répertoire
 git add src/
 ```
 
-#### Commit Changes
+#### Enregistrer les Changements
 ```bash
-# Commit with a message
-git commit -m "Add game logic for secret code generation"
+# Commit avec un message
+git commit -m "Ajouter la logique de génération du code secret"
 
-# Commit all modified tracked files
-git commit -am "Update UI styling"
+# Commit tous les fichiers suivis modifiés
+git commit -am "Mettre à jour le style de l'interface"
 ```
 
-#### Push and Pull
+#### Pousser et Tirer
 ```bash
-# Push your commits to GitHub
+# Pousser vos commits vers GitHub
 git push origin main
 
-# Pull latest changes from GitHub
+# Récupérer les derniers changements depuis GitHub
 git pull origin main
 
-# Pull before starting work (recommended)
+# Tirer avant de commencer à travailler (recommandé)
 git pull
 ```
 
-#### Branching
+#### Branches
 ```bash
-# Create a new branch
-git branch feature/game-logic
+# Créer une nouvelle branche
+git branch feature/logique-jeu
 
-# Switch to a branch
-git checkout feature/game-logic
+# Basculer vers une branche
+git checkout feature/logique-jeu
 
-# Create and switch to a new branch (shorthand)
-git checkout -b feature/ui-design
+# Créer et basculer vers une nouvelle branche (raccourci)
+git checkout -b feature/design-ui
 
-# List all branches
+# Lister toutes les branches
 git branch
 
-# Merge a branch into main
+# Fusionner une branche dans main
 git checkout main
-git merge feature/game-logic
+git merge feature/logique-jeu
 
-# Delete a branch after merging
-git branch -d feature/game-logic
+# Supprimer une branche après fusion
+git branch -d feature/logique-jeu
 ```
 
-### Recommended Workflow
+### Workflow Recommandé
 
-1. **Before starting work:**
+1. **Avant de commencer à travailler :**
 ```bash
 git pull origin main
 ```
 
-2. **Create a feature branch:**
+2. **Créer une branche de fonctionnalité :**
 ```bash
-git checkout -b feature/your-feature-name
+git checkout -b feature/nom-de-votre-fonctionnalite
 ```
 
-3. **Make your changes and commit regularly:**
+3. **Faire vos changements et committer régulièrement :**
 ```bash
 git add .
-git commit -m "Descriptive commit message"
+git commit -m "Message de commit descriptif"
 ```
 
-4. **Push your branch to GitHub:**
+4. **Pousser votre branche vers GitHub :**
 ```bash
-git push -u origin feature/your-feature-name
+git push -u origin feature/nom-de-votre-fonctionnalite
 ```
 
-5. **Create a Pull Request on GitHub** for team review
+5. **Créer une Pull Request sur GitHub** pour révision d'équipe
 
-6. **After PR is merged, update your local main:**
+6. **Après fusion de la PR, mettre à jour votre main local :**
 ```bash
 git checkout main
 git pull origin main
-git branch -d feature/your-feature-name
+git branch -d feature/nom-de-votre-fonctionnalite
 ```
 
-### Common Issues and Solutions
+### Problèmes Courants et Solutions
 
-#### Merge Conflicts
+#### Conflits de Fusion
 ```bash
-# When you encounter a conflict
-# 1. Open the conflicted file(s)
-# 2. Look for conflict markers: <<<<<<<, =======, >>>>>>>
-# 3. Manually resolve the conflicts
-# 4. Stage the resolved files
-git add conflicted-file.js
-git commit -m "Resolve merge conflict"
+# Quand vous rencontrez un conflit
+# 1. Ouvrir le(s) fichier(s) en conflit
+# 2. Chercher les marqueurs de conflit : <<<<<<<, =======, >>>>>>>
+# 3. Résoudre manuellement les conflits
+# 4. Préparer les fichiers résolus
+git add fichier-en-conflit.js
+git commit -m "Résoudre le conflit de fusion"
 ```
 
-#### Undo Changes
+#### Annuler les Changements
 ```bash
-# Discard changes in working directory
-git checkout -- filename.js
+# Abandonner les changements dans le répertoire de travail
+git checkout -- nomfichier.js
 
-# Unstage a file
-git reset HEAD filename.js
+# Retirer un fichier de la préparation
+git reset HEAD nomfichier.js
 
-# Undo last commit (keep changes)
+# Annuler le dernier commit (garder les changements)
 git reset --soft HEAD~1
 
-# Undo last commit (discard changes)
+# Annuler le dernier commit (supprimer les changements)
 git reset --hard HEAD~1
 ```
 
-#### View History
+#### Voir l'Historique
 ```bash
-# View commit history
+# Voir l'historique des commits
 git log
 
-# View compact history
+# Voir l'historique compact
 git log --oneline
 
-# View history with graph
+# Voir l'historique avec graphique
 git log --graph --oneline --all
 ```
 
-## Commit Message Conventions
+## Conventions de Messages de Commit
 
-Follow these guidelines for clear commit messages:
+Suivez ces directives pour des messages de commit clairs :
 
-- Use imperative mood: "Add feature" not "Added feature"
-- Keep first line under 50 characters
-- Add detailed description after a blank line if needed
-- Reference issue numbers when applicable
+- Utilisez l'impératif : "Ajouter fonctionnalité" et non "Ajouté fonctionnalité"
+- Gardez la première ligne sous 50 caractères
+- Ajoutez une description détaillée après une ligne vide si nécessaire
+- Référencez les numéros d'issue si applicable
 
-Examples:
+Exemples :
 ```
-Add secret code generation function
+Ajouter la fonction de génération de code secret
 
-Implement random code generation with configurable
-number of pegs and available colors.
-```
-
-```
-Fix validation bug in guess checking
-
-Resolve issue where duplicate colors were not
-handled correctly in the verification algorithm.
+Implémenter la génération de code aléatoire avec nombre
+configurable de pions et couleurs disponibles.
 ```
 
-## Collaboration Guidelines
+```
+Corriger le bug de validation lors de la vérification
 
-1. **Always pull before starting work** to avoid conflicts
-2. **Use feature branches** for new features or bug fixes
-3. **Commit often** with clear, descriptive messages
-4. **Test your code** before pushing
-5. **Review team members' Pull Requests** promptly
-6. **Keep commits focused** on a single change or feature
-7. **Communicate** with your team about what you're working on
+Résoudre le problème où les couleurs dupliquées n'étaient pas
+gérées correctement dans l'algorithme de vérification.
+```
 
-## Team Members
+## Directives de Collaboration
 
-- Pham - Game Logic
-- Gowend - User Interface
-- Etienne - Quality Assurance & Documentation
+1. **Toujours tirer avant de commencer à travailler** pour éviter les conflits
+2. **Utiliser des branches de fonctionnalité** pour les nouvelles fonctionnalités ou corrections de bugs
+3. **Committer souvent** avec des messages clairs et descriptifs
+4. **Tester votre code** avant de pousser
+5. **Réviser les Pull Requests** des membres de l'équipe rapidement
+6. **Garder les commits focalisés** sur un seul changement ou fonctionnalité
+7. **Communiquer** avec votre équipe sur ce sur quoi vous travaillez
 
-## Project Timeline
+## Membres de l'Équipe
 
-- Start Date: October 17, 2025
-- Target Completion: December 31, 2025
-- Presentation: End of December
+- Pham - Logique du Jeu
+- Gowend - Interface Utilisateur
+- Etienne - Assurance Qualité & Documentation
 
-## License
+## Calendrier du Projet
 
-This project is developed as part of a course assignment.
+- Date de Début : 17 octobre 2025
+- Achèvement Cible : 31 décembre 2025
+- Présentation : Fin décembre
 
-## Resources
+## Licence
 
-- [Git Documentation](https://git-scm.com/doc)
-- [GitHub Guides](https://guides.github.com/)
-- [JavaScript MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-- [Master Mind Rules](https://en.wikipedia.org/wiki/Mastermind_(board_game))
+Ce projet est développé dans le cadre d'un devoir de cours.
+
+## Ressources
+
+- [Documentation Git](https://git-scm.com/doc)
+- [Guides GitHub](https://guides.github.com/)
+- [Documentation JavaScript MDN](https://developer.mozilla.org/fr/docs/Web/JavaScript)
+- [Règles du Master Mind](https://fr.wikipedia.org/wiki/Mastermind)
