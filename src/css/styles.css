@@ -1,0 +1,373 @@
+/**
+ * Master Mind Game Styles
+ */
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --success-color: #27ae60;
+    --error-color: #e74c3c;
+    --background-color: #ecf0f1;
+    --card-background: #ffffff;
+    --border-color: #bdc3c7;
+    --text-color: #2c3e50;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 30px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+header .subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Main Game Area */
+main {
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+#game-board {
+    margin-bottom: 30px;
+}
+
+/* Attempts Counter */
+#attempts-counter {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--background-color);
+    border-radius: 6px;
+}
+
+#remaining-attempts {
+    color: var(--secondary-color);
+}
+
+/* History Section */
+#history {
+    margin-bottom: 30px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.attempt {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: var(--background-color);
+    border-radius: 6px;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.attempt-number {
+    font-weight: bold;
+    min-width: 40px;
+    color: var(--primary-color);
+}
+
+/* Peg Containers and Pegs */
+.peg-container {
+    display: flex;
+    gap: 10px;
+}
+
+.peg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.peg-slot {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px dashed var(--border-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.peg-slot:hover {
+    border-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.peg-slot.filled {
+    border-style: solid;
+    border-color: var(--primary-color);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Current Guess Section */
+#current-guess {
+    margin: 30px 0;
+    padding: 20px;
+    background-color: var(--background-color);
+    border-radius: 6px;
+}
+
+#current-guess h2 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+#guess-slots {
+    justify-content: center;
+}
+
+/* Color Palette */
+#color-palette {
+    margin: 30px 0;
+}
+
+#color-palette h2 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.color-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.color-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.color-btn:hover {
+    transform: scale(1.1);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.color-btn:active {
+    transform: scale(1.05);
+}
+
+/* Feedback */
+.feedback {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 0.9rem;
+}
+
+.feedback .exact {
+    color: var(--success-color);
+    font-weight: bold;
+}
+
+.feedback .misplaced {
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-secondary {
+    background-color: var(--border-color);
+    color: var(--text-color);
+}
+
+#game-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Game Result */
+#game-result {
+    text-align: center;
+    padding: 30px;
+    border-radius: 6px;
+    margin-bottom: 30px;
+}
+
+#game-result.hidden {
+    display: none;
+}
+
+.success-message {
+    color: var(--success-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.failure-message {
+    color: var(--error-color);
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#secret-code-reveal {
+    margin-top: 20px;
+}
+
+#secret-code-reveal p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+/* Game Rules */
+#game-rules {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--background-color);
+    border-radius: 6px;
+}
+
+#game-rules h2 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+#game-rules ul {
+    margin-left: 20px;
+}
+
+#game-rules li {
+    margin-bottom: 8px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    color: var(--text-color);
+    opacity: 0.7;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    .peg,
+    .peg-slot {
+        width: 35px;
+        height: 35px;
+    }
+
+    .color-btn {
+        width: 50px;
+        height: 50px;
+    }
+
+    .attempt {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #game-controls {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .peg,
+    .peg-slot {
+        width: 30px;
+        height: 30px;
+    }
+
+    .color-btn {
+        width: 45px;
+        height: 45px;
+    }
+}
