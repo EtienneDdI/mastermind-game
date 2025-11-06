@@ -4,7 +4,7 @@ Merci de contribuer à ce projet ! Ce document fournit des directives pour la co
 
 ## Directives de Style de Code
 
-### JavaScript
+### Java
 
 - Utilisez camelCase pour les noms de variables et de fonctions
 - Utilisez des noms descriptifs pour les variables et les fonctions
@@ -14,7 +14,7 @@ Merci de contribuer à ce projet ! Ce document fournit des directives pour la co
 - Évitez var
 
 Exemple :
-```javascript
+```java
 /**
  * Calculer la somme de deux nombres
  * @param {number} a - Premier nombre

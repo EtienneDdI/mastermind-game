@@ -12,10 +12,10 @@ Master Mind est un jeu de décodage où un joueur (l'ordinateur) crée un code s
 mastermind-game/
 ├── src/
 │   ├── js/
-│   │   ├── main.js           # Point d'entrée et initialisation du jeu
-│   │   ├── game.js            # Logique du jeu et gestion de l'état
-│   │   ├── ui.js              # Interactions de l'interface utilisateur
-│   │   └── utils.js           # Fonctions utilitaires
+│   │   ├── main.java           # Point d'entrée et initialisation du jeu
+│   │   ├── game.java           # Logique du jeu et gestion de l'état
+│   │   ├── ui.java             # Interactions de l'interface utilisateur
+│   │   └── utils.java          # Fonctions utilitaires
 │   └── css/
 │       └── styles.css         # Styles du jeu
 ├── assets/
