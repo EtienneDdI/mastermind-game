@@ -138,9 +138,9 @@ public class utils {
     /**
      * Compare une combinaison secrète avec celle du joueur (étape 1 : pins blancs / noirs)
      */
-    public static void verifyCombiSecrete(Combinaison secret, Combinaison essai) {
+    public static void verifyCombiSecrete(Combinaison secret, Combinaison essai, int nb_essais) {
 
-        List<String> resultats = new ArrayList<>();
+        Resultats resultats = new Resultats();
 
         boolean[] secretUsed = new boolean[secret.size()];
         boolean[] essaiUsed = new boolean[essai.size()];
@@ -148,11 +148,11 @@ public class utils {
         // === Étape 1 : pins rouges
         for (int i = 0; i < essai.size(); i++) {
             if (essai.getPing(i).getColor() == secret.getPing(i).getColor()) {
-                resultats.add("pin rouge");
+                resultats.getPinRouge().addNB();
                 secretUsed[i] = true;
                 essaiUsed[i] = true;
             } else {
-                resultats.add(""); // temporaire
+                resultats.getPinNoir().addNB();
             }
         }
 
@@ -173,15 +173,18 @@ public class utils {
             }
 
             if (found) {
-                resultats.set(i, "pin blanc");
+                resultats.getPinBlanc().addNB();
             } else {
-                resultats.set(i, "pin noir");
+                resultats.getPinNoir().addNB();
             }
         }
 
+        resultats.setNbEssai(nb_essais);
+
         System.out.println("Combinaison secrète : " + secret.toString());
-        System.out.println("Essai du joueur     : " + essai.toString());
-        System.out.println("Résultat final      : " + resultats);
+        System.out.println("Essai du joueur     : " + essai.toString());  
+        System.out.println("Résultat final      : " + resultats.getPinBlanc().getNB() + " pin blancs, " + resultats.getPinRouge().getNB() + " pin rouges, " + resultats.getPinNoir().getNB() + " pin noirs");
+        System.out.println("Nombre d'essais     : " + resultats.getNbEssai());
     }
 
 
@@ -196,7 +199,7 @@ public class utils {
         Combinaison secret = generateSecretCode(4, "MEDIUM", false);
         Combinaison essai = generateSecretCode(4, "MEDIUM", false);
 
-        verifyCombiSecrete(secret , essai);
+        verifyCombiSecrete(secret , essai, 1);
 
     //     // Test 1 : Génération avec doublons
     //     Combinaison code1 = generateSecretCode(4, "HARD", true);
