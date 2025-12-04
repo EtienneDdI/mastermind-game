@@ -1,25 +1,24 @@
 import java.util.Random;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Arrays;
 
 public class utils {
 
     // Initialisation des couleurs
-    private final Color red = new Color("red");
-    private final Color blue = new Color("blue");
-    private final Color green = new Color("green");
-    private final Color yellow = new Color("yellow");
-    private final Color purple = new Color("purple");
-    private final Color orange = new Color("orange");
-    private final Color brown = new Color("brown");
-    private final Color pink = new Color("pink");
+    private static final Color red = new Color("red");
+    private static final Color blue = new Color("blue");
+    private static final Color green = new Color("green");
+    private static final Color yellow = new Color("yellow");
+    private static final Color purple = new Color("purple");
+    private static final Color orange = new Color("orange");
+    private static final Color brown = new Color("brown");
+    private static final Color pink = new Color("pink");
 
     // Initialisation des listes de couleurs
-    private final Color[] EASY_COLORS = {red, blue, green, yellow};
-    private final Color[] MEDIUM_COLORS = {red, blue, green, yellow, purple, orange};
-    private final Color[] HARD_COLORS = {red, blue, green, yellow, purple, orange, brown, pink};
+    private static final Color[] EASY_COLORS = {red, blue, green, yellow};
+    private static final Color[] MEDIUM_COLORS = {red, blue, green, yellow, purple, orange};
+    private static final Color[] HARD_COLORS = {red, blue, green, yellow, purple, orange, brown, pink};
 
     // Initialisation de la classe Random (static pour les méthodes static)
     private static final Random random = new Random();
@@ -33,7 +32,7 @@ public class utils {
      * @throws IllegalArgumentException Exception si les paramètres d'entrées ne sont pas respéctés.
      */
 
-    public Combinaison generateSecretCode(int nbPins, String difficulty, boolean allowDup){
+    public static Combinaison generateSecretCode(int nbPins, String difficulty, boolean allowDup){
 
         // En premier on vérifie le nb de Pins pour le code, ne doit pas être inf à 3 (peut être modifié à l'avenir).
         if(nbPins < 3){
@@ -45,29 +44,28 @@ public class utils {
         // Sélection de la liste de couleur du jeux en fonction de la difficulté selectionnée.
         Color[] colors;
         switch (difficulty) {
-            case "EASY":
+            case "EASY" -> {
                 System.out.printf("=== Difficulté choisie ===\n");
                 System.out.printf("========== EASY ==========\n");
                 colors = EASY_COLORS;
                 System.out.printf("Les couleurs possibles sont " + Arrays.toString(colors) + "\n");
-                break;
+            }
 
-            case "MEDIUM":
+            case "MEDIUM" -> {
                 System.out.printf("=== Difficulté choisie ===\n");
                 System.out.printf("========= MEDIUM =========\n");
                 colors = MEDIUM_COLORS;
                 System.out.printf("Les couleurs possibles sont " + Arrays.toString(colors) + "\n");
-                break;
+            }
 
-            case "HARD":
+            case "HARD" -> {
                 System.out.printf("=== Difficulté choisie ===\n");
                 System.out.printf("========== HARD ==========\n");
                 colors = HARD_COLORS;
                 System.out.printf("Les couleurs possibles sont " + Arrays.toString(colors) + "\n");
-                break;
+            }
 
-            default:
-                throw new IllegalArgumentException("Difficulté invalide : " + difficulty + "\n");
+            default -> throw new IllegalArgumentException("Difficulté invalide : " + difficulty + "\n");
         }
 
         // Création du code secret
@@ -140,52 +138,52 @@ public class utils {
     /**
      * Compare une combinaison secrète avec celle du joueur (étape 1 : pins blancs / noirs)
      */
-    public static void verifyCombiSecrete(String[] args) {
-    String[] secret = generateSecretCode(4, "MEDIUM", false);
-    String[] essai = {"blue", "red", "yellow", "green"};
+    public static void verifyCombiSecrete(Combinaison secret, Combinaison essai) {
 
-    List<String> resultats = new ArrayList<>();
+        List<String> resultats = new ArrayList<>();
 
-    // Tableaux pour savoir quelles positions sont déjà utilisées
-    boolean[] secretUsed = new boolean[secret.length];
-    boolean[] essaiUsed = new boolean[essai.length];
+        boolean[] secretUsed = new boolean[secret.size()];
+        boolean[] essaiUsed = new boolean[essai.size()];
 
-    // === Étape 1 : les pins rouges (bonne couleur, bonne position)
-    for (int i = 0; i < essai.length; i++) {
-        if (essai[i].equalsIgnoreCase(secret[i])) {
-            resultats.add("pin rouge");
-            secretUsed[i] = true;
-            essaiUsed[i] = true;
-        } else {
-            resultats.add(""); // on remplit temporairement
-        }
-    }
-
-    // === Étape 2 : les pins blancs (bonne couleur, mauvaise position)
-    for (int i = 0; i < essai.length; i++) {
-        if (essaiUsed[i]) continue; // déjà un pin rouge
-
-        boolean found = false;
-        for (int j = 0; j < secret.length; j++) {
-            if (!secretUsed[j] && essai[i].equalsIgnoreCase(secret[j])) {
-                found = true;
-                secretUsed[j] = true;
-                break;
+        // === Étape 1 : pins rouges
+        for (int i = 0; i < essai.size(); i++) {
+            if (essai.getPing(i).getColor() == secret.getPing(i).getColor()) {
+                resultats.add("pin rouge");
+                secretUsed[i] = true;
+                essaiUsed[i] = true;
+            } else {
+                resultats.add(""); // temporaire
             }
         }
 
-        if (found) {
-            resultats.set(i, "pin blanc");
-        } else if (resultats.get(i).equals("")) {
-            resultats.set(i, "pin noir");
+        // === Étape 2 : pins blancs
+        for (int i = 0; i < essai.size(); i++) {
+
+            if (essaiUsed[i]) continue;
+
+            boolean found = false;
+            for (int j = 0; j < secret.size(); j++) {
+                if (!secretUsed[j]
+                    && essai.getPing(i).getColor() == secret.getPing(j).getColor()) { 
+                    
+                    found = true;
+                    secretUsed[j] = true;
+                    break;
+                }
+            }
+
+            if (found) {
+                resultats.set(i, "pin blanc");
+            } else {
+                resultats.set(i, "pin noir");
+            }
         }
+
+        System.out.println("Combinaison secrète : " + secret.toString());
+        System.out.println("Essai du joueur     : " + essai.toString());
+        System.out.println("Résultat final      : " + resultats);
     }
 
-    // === Affichage final
-    System.out.println("Combinaison secrète : " + Arrays.toString(secret));
-    System.out.println("Essai du joueur     : " + Arrays.toString(essai));
-    System.out.println("Résultat final      : " + resultats);
-    }
 
     /**
      * Méthode main pour tester les méthodes de la classe Utils
@@ -194,14 +192,18 @@ public class utils {
         System.out.println("=== Test de Utils ===\n");
 
         // Création d'une instance de utils pour accéder aux constantes non-static
-        utils utilsInstance = new utils();
+            
+        Combinaison secret = generateSecretCode(4, "MEDIUM", false);
+        Combinaison essai = generateSecretCode(4, "MEDIUM", false);
 
-        // Test 1 : Génération avec doublons
-        Combinaison code1 = utilsInstance.generateSecretCode(4, "HARD", true);
-        System.out.println("Code Easy avec doublons : " + code1.toString() + "\n");
+        verifyCombiSecrete(secret , essai);
 
-        // Test 2 : Génération sans doublons
-        Combinaison code2 = utilsInstance.generateSecretCode(4, "HARD", false);
-        System.out.println("Code Easy sans doublons : " + code2.toString() + "\n");
+    //     // Test 1 : Génération avec doublons
+    //     Combinaison code1 = generateSecretCode(4, "HARD", true);
+    //     System.out.println("Code Easy avec doublons : " + code1.toString() + "\n");
+
+    //     // Test 2 : Génération sans doublons
+    //     Combinaison code2 = generateSecretCode(4, "HARD", false);
+    //     System.out.println("Code Easy sans doublons : " + code2.toString() + "\n");
     }
 } 
