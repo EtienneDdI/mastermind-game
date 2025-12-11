@@ -1,200 +1,189 @@
-import java.util.List;
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Game {
+
     // Constantes du jeu
     private static final int CODE_LENGTH = 4;
-    private static final int MAX_ATTEMPTS = 10;
-    
+    private static final int MAX_ATTEMPTS = 12;
+
     // Variables d'état
-    private Combinaison secretCode;
-    private int attemptsLeft;
-    private boolean gameOver;
-    private boolean hasWon;
-    private List<Attempt> history;
-    
+    private Combinaison code_secret;
+    private int nb_essais_restants;
+    private boolean jeu_termine;
+    private boolean victoire;
+    private Resultats[] historique;
+
     // Configuration du jeu
-    private String difficulty;
-    private boolean allowDuplicates;
-    
-    // Instance de utils pour générer les codes
-    private utils utilsInstance;
-    
-    /**
-     * Constructeur avec configuration
-     */
-    public Game(String difficulty, boolean allowDuplicates) {
-        this.difficulty = difficulty;
-        this.allowDuplicates = allowDuplicates;
-        this.utilsInstance = new utils();
+    private String difficulte;
+    private boolean allow_duplicates;
+
+    // Constructeur avec configuration
+    public Game(String difficulte, boolean allow_duplicates){
+        this.difficulte = difficulte;
+        this.allow_duplicates = allow_duplicates;
+        this.historique = new Resultats[MAX_ATTEMPTS];
+        this.nb_essais_restants = 0;
+        this.jeu_termine = false;
+        this.victoire = false;
     }
-    
-    /**
-     * Constructeur par défaut (difficulté MEDIUM, doublons autorisés)
-     */
-    public Game() {
-        this("MEDIUM", true);
+
+    // Constructeur par défaut (difficulté EASY, pas de doublons)
+    public Game(){
+        this.difficulte = "EASY";
+        this.allow_duplicates = false;
+        this.historique = new Resultats[MAX_ATTEMPTS];
+        this.nb_essais_restants = 0;
+        this.jeu_termine = false;
+        this.victoire = false;
     }
-    
+
     /**
      * Démarre une nouvelle partie
      */
-    public void startNewGame() {
-        // Utilise utils.generateSecretCode() exactement comme fourni
-        this.secretCode = utilsInstance.generateSecretCode(
-            CODE_LENGTH, 
-            difficulty, 
-            allowDuplicates
-        );
-        this.attemptsLeft = MAX_ATTEMPTS;
-        this.history = new ArrayList<>();
-        this.gameOver = false;
-        this.hasWon = false;
+    public void startNewGame(){
+        this.code_secret = utils.generateSecretCode(CODE_LENGTH, difficulte, allow_duplicates);
+        this.nb_essais_restants = MAX_ATTEMPTS;
+        this.historique = new Resultats[MAX_ATTEMPTS];
+        this.jeu_termine = false;
+        this.victoire = false;
     }
-    
+
     /**
      * Soumet une proposition du joueur
      */
-    public Result submitGuess(Combinaison guess) {
-        if (gameOver) {
+    public Resultats submitGuess(Combinaison essai){
+        if(jeu_termine){
             throw new IllegalStateException("Le jeu est terminé !");
         }
-        
-        Result result = evaluateGuess(guess);
-        history.add(new Attempt(guess, result));
-        attemptsLeft--;
-        
-        if (result.getBlackPegs() == CODE_LENGTH) {
-            hasWon = true;
-            gameOver = true;
-        } else if (attemptsLeft <= 0) {
-            gameOver = true;
+
+        int nb_essai_actuel = MAX_ATTEMPTS - nb_essais_restants + 1;
+        Resultats resultats = utils.verifyCombiSecrete(code_secret, essai, nb_essai_actuel);
+
+        int index_essai = MAX_ATTEMPTS - nb_essais_restants;
+        historique[index_essai] = resultats;
+        nb_essais_restants--;
+
+        if(resultats.getPinRouge().getNB() == CODE_LENGTH){
+            victoire = true;
+            jeu_termine = true;
+        } else if(nb_essais_restants <= 0){
+            jeu_termine = true;
         }
-        
-        return result;
+
+        return resultats;
     }
-    
+
+    // =================
+    // =====GETTER======
+    // =================
+
     /**
-     * Évalue la proposition du joueur
-     * Compare deux Combinaisons (proposition vs code secret)
+     * @return Retourne si le jeu est terminé
      */
-    private Result evaluateGuess(Combinaison guess) {
-        int black = 0;
-        int white = 0;
-        
-        Ping[] secretPings = secretCode.getPings();
-        Ping[] guessPings = guess.getPings();
-        
-        // Copies pour marquer les pings déjà utilisés
-        boolean[] secretUsed = new boolean[CODE_LENGTH];
-        boolean[] guessUsed = new boolean[CODE_LENGTH];
-        
-        // Première passe : pions noirs (bonne couleur + bonne position)
-        for (int i = 0; i < CODE_LENGTH; i++) {
-            if (guessPings[i].getColor().equals(secretPings[i].getColor())) {
-                black++;
-                secretUsed[i] = true;
-                guessUsed[i] = true;
-            }
-        }
-        
-        // Deuxième passe : pions blancs (bonne couleur, mauvaise position)
-        for (int i = 0; i < CODE_LENGTH; i++) {
-            if (!guessUsed[i]) {
-                for (int j = 0; j < CODE_LENGTH; j++) {
-                    if (!secretUsed[j] && 
-                        guessPings[i].getColor().equals(secretPings[j].getColor())) {
-                        white++;
-                        secretUsed[j] = true;
-                        break;
-                    }
-                }
-            }
-        }
-        
-        return new Result(black, white);
+    public boolean isGameOver(){
+        return jeu_termine;
     }
-    
-    // Getters
-    public boolean isGameOver() {
-        return gameOver;
-    }
-    
-    public boolean hasWon() {
-        return hasWon;
-    }
-    
-    public List<Attempt> getHistory() {
-        return new ArrayList<>(history);
-    }
-    
-    public int getAttemptsLeft() {
-        return attemptsLeft;
-    }
-    
-    public Combinaison getSecretCode() {
-        return secretCode;
-    }
-    
+
     /**
-     * Classe interne Result
+     * @return Retourne si le joueur a gagné
      */
-    public static class Result {
-        private final int blackPegs;
-        private final int whitePegs;
-        
-        public Result(int blackPegs, int whitePegs) {
-            this.blackPegs = blackPegs;
-            this.whitePegs = whitePegs;
-        }
-        
-        public int getBlackPegs() {
-            return blackPegs;
-        }
-        
-        public int getWhitePegs() {
-            return whitePegs;
-        }
-        
-        @Override
-        public String toString() {
-            return "Noirs: " + blackPegs + ", Blancs: " + whitePegs;
-        }
+    public boolean hasWon(){
+        return victoire;
     }
-    
+
     /**
-     * Classe interne Attempt
+     * @return Retourne l'historique des résultats
      */
-    public static class Attempt {
-        private final Combinaison guess;
-        private final Result result;
-        
-        public Attempt(Combinaison guess, Result result) {
-            this.guess = guess;
-            this.result = result;
-        }
-        
-        public Combinaison getGuess() {
-            return guess;
-        }
-        
-        public Result getResult() {
-            return result;
-        }
+    public Resultats[] getHistorique(){
+        return historique;
     }
-    
+
+    /**
+     * @return Retourne le nombre d'essais restants
+     */
+    public int getAttemptsLeft(){
+        return nb_essais_restants;
+    }
+
+    /**
+     * @return Retourne le code secret
+     */
+    public Combinaison getSecretCode(){
+        return code_secret;
+    }
+
+    /**
+     * @return Retourne la difficulté
+     */
+    public String getDifficulte(){
+        return difficulte;
+    }
+
+    /**
+     * @return Retourne si les doublons sont autorisés
+     */
+    public boolean getAllowDuplicates(){
+        return allow_duplicates;
+    }
+
+    // =================
+    // =====SETTER======
+    // =================
+
+    /**
+     * @param difficulte Set la difficulté
+     */
+    public void setDifficulte(String difficulte){
+        this.difficulte = difficulte;
+    }
+
+    /**
+     * @param allow_duplicates Set si les doublons sont autorisés
+     */
+    public void setAllowDuplicates(boolean allow_duplicates){
+        this.allow_duplicates = allow_duplicates;
+    }
+
+    /**
+     * @param nb_essais_restants Set le nombre d'essais restants
+     */
+    public void setAttemptsLeft(int nb_essais_restants){
+        this.nb_essais_restants = nb_essais_restants;
+    }
+
     /**
      * Méthode main pour tester
      */
-    public static void main(String[] args) {
-        System.out.println("=== Test de Game ===\n");
-        
+    public static void main(String[] args){
+        System.out.println("=== Test de game ===\n");
+
+        Color red = new Color("red");
+        Color blue = new Color("blue"); 
+        Color green = new Color("green");
+        Color yellow = new Color("yellow");
+
         // Création d'un jeu en difficulté EASY sans doublons
-        Game game = new Game("EASY", false);
-        game.startNewGame();
+        Game partie = new Game("EASY", false);
+        partie.startNewGame();
+
+        System.out.println("Tentatives restantes : " + partie.getAttemptsLeft());
+        System.out.println("Jeu terminé ? " + partie.isGameOver());
+        System.out.println("Code secret : " + partie.getSecretCode());
+
+        Combinaison essai1 = new Combinaison(new Ping[] {new Ping(red, 0), new Ping(blue, 1), new Ping(green, 2), new Ping(yellow, 3)});
+        Resultats resultats1 = partie.submitGuess(essai1);
+        System.out.println("Résultat de l'essai 1 : " + resultats1.toString());
+
+        Combinaison essai2 = new Combinaison(new Ping[] {new Ping(red, 0), new Ping(blue, 1), new Ping(green, 2), new Ping(yellow, 3)});
+        Resultats resultats2 = partie.submitGuess(essai2);
+        System.out.println("Résultat de l'essai 2 : " + resultats2.toString());
+
+        System.out.println("Tentatives restantes : " + partie.getAttemptsLeft());
+        System.out.println("Jeu terminé ? " + partie.isGameOver());
+        System.out.println("Code secret : " + partie.getSecretCode());
+
+        System.out.println("Résultat de l'essai 1 : " + resultats1.toString());
+        System.out.println("Résultat de l'essai 2 : " + resultats2.toString());
         
-        System.out.println("Tentatives restantes : " + game.getAttemptsLeft());
-        System.out.println("Jeu terminé ? " + game.isGameOver());
-        System.out.println("Code secret : " + game.getSecretCode());
     }
 }

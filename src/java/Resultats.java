@@ -12,22 +12,33 @@ public class Resultats {
 
     private int nb_essais;
 
+    private Combinaison essai;
+
     // Constructeur de la Resultats avec paramètres
-    public Resultats(Resultat pin_blanc, Resultat pin_rouge, Resultat pin_noir){
+    public Resultats(Resultat pin_blanc, Resultat pin_rouge, Resultat pin_noir, Combinaison essai){
         this.pin_blanc = pin_blanc;
         this.pin_rouge = pin_rouge;
         this.pin_noir = pin_noir;
         this.nb_essais = 0;
+        this.essai = essai;
     }
 
     // Constructeur sans paramètres (utilise les valeurs par défaut)
     public Resultats(){
         this.nb_essais = 0;
-    }
+        this.essai = null;
+    }   
 
     // =================
     // =====GETTER======
     // =================
+
+    /**
+     * @return Retourne l'essai
+     */
+    public Combinaison getEssai(){
+        return this.essai;
+    }
 
     /**
      * @return Retourne le resultat du pin blanc
@@ -62,9 +73,28 @@ public class Resultats {
     // =================
 
     /**
+     * @param essai Set l'essai
+     */
+    public void setEssai(Combinaison essai){
+        this.essai = essai;
+    }
+
+    /**
      * @param nb_essais Set le nombre d'essais
      */
     public void setNbEssai(int nb_essais){
         this.nb_essais = nb_essais;
+    }
+
+    // =================
+    // ====TOSTRING=====
+    // =================
+
+    /**
+     * @return Retourne une représentation textuelle des résultats
+     */
+    @Override
+    public String toString(){
+        return "Essai " + nb_essais + " : " + pin_blanc.getNB() + " blanc(s), " + pin_rouge.getNB() + " rouge(s), " + pin_noir.getNB() + " noir(s)";
     }
 }

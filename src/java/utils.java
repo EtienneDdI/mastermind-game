@@ -138,25 +138,23 @@ public class utils {
     /**
      * Compare une combinaison secrète avec celle du joueur (étape 1 : pins blancs / noirs)
      */
-    public static void verifyCombiSecrete(Combinaison secret, Combinaison essai, int nb_essais) {
+    public static Resultats verifyCombiSecrete(Combinaison secret, Combinaison essai, int nb_essais) {
 
         Resultats resultats = new Resultats();
 
         boolean[] secretUsed = new boolean[secret.size()];
         boolean[] essaiUsed = new boolean[essai.size()];
 
-        // === Étape 1 : pins rouges
+        // === Étape 1 : pins rouges (bonne couleur à la bonne position)
         for (int i = 0; i < essai.size(); i++) {
-            if (essai.getPing(i).getColor() == secret.getPing(i).getColor()) {
+            if (essai.getPing(i).getColor().equals(secret.getPing(i).getColor())) {
                 resultats.getPinRouge().addNB();
                 secretUsed[i] = true;
                 essaiUsed[i] = true;
-            } else {
-                resultats.getPinNoir().addNB();
             }
         }
 
-        // === Étape 2 : pins blancs
+        // === Étape 2 : pins blancs (bonne couleur mais mauvaise position)
         for (int i = 0; i < essai.size(); i++) {
 
             if (essaiUsed[i]) continue;
@@ -164,8 +162,8 @@ public class utils {
             boolean found = false;
             for (int j = 0; j < secret.size(); j++) {
                 if (!secretUsed[j]
-                    && essai.getPing(i).getColor() == secret.getPing(j).getColor()) { 
-                    
+                    && essai.getPing(i).getColor().equals(secret.getPing(j).getColor())) {
+
                     found = true;
                     secretUsed[j] = true;
                     break;
@@ -175,16 +173,20 @@ public class utils {
             if (found) {
                 resultats.getPinBlanc().addNB();
             } else {
+                // === Étape 3 : pins noirs (couleur absente de la combinaison)
                 resultats.getPinNoir().addNB();
             }
         }
 
         resultats.setNbEssai(nb_essais);
+        resultats.setEssai(essai);
 
         System.out.println("Combinaison secrète : " + secret.toString());
-        System.out.println("Essai du joueur     : " + essai.toString());  
+        System.out.println("Essai du joueur     : " + essai.toString());
         System.out.println("Résultat final      : " + resultats.getPinBlanc().getNB() + " pin blancs, " + resultats.getPinRouge().getNB() + " pin rouges, " + resultats.getPinNoir().getNB() + " pin noirs");
         System.out.println("Nombre d'essais     : " + resultats.getNbEssai());
+
+        return resultats;
     }
 
 
@@ -196,8 +198,8 @@ public class utils {
 
         // Création d'une instance de utils pour accéder aux constantes non-static
             
-        Combinaison secret = generateSecretCode(4, "MEDIUM", false);
-        Combinaison essai = generateSecretCode(4, "MEDIUM", false);
+        Combinaison secret = generateSecretCode(4, "EASY", false);
+        Combinaison essai = generateSecretCode(4, "EASY", false);
 
         verifyCombiSecrete(secret , essai, 1);
 

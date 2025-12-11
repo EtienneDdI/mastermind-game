@@ -33,6 +33,28 @@ public class Color{
     }
 
     /**
+     * Compare deux objets Color pour vérifier s'ils représentent la même couleur
+     * @param obj L'objet à comparer
+     * @return true si les couleurs sont identiques, false sinon
+     */
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Color other = (Color) obj;
+        return this.color.equals(other.color);
+    }
+
+    /**
+     * Génère un hashCode basé sur la couleur
+     * @return Le hashCode de la couleur
+     */
+    @Override
+    public int hashCode(){
+        return color.hashCode();
+    }
+
+    /**
      * Méthode main pour tester la classe Color
      */
     public static void main(String[] args) {
